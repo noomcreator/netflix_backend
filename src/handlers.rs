@@ -1,6 +1,6 @@
 use axum::{ extract::{ Path, Query, State }, Json };
 use crate::models::{ TmdbResponse, VideoResponse, PageQuery, SearchQuery };
-use crate::state::Appstate;
+use crate::state::AppState;
 
 pub async fn root() -> &'static str {
     "Netflix Backend is Online"
@@ -21,7 +21,7 @@ pub async fn get_trending_movives(
 }
 
 pub async fn search_content(
-    State(state): State<Appstate>,
+    State(state): State<AppState>,
     Query(params): Query<SearchQuery>
 ) -> Json<TmdbResponse> {
     let page = params.page.unwrap_or(1);
@@ -40,7 +40,7 @@ pub async fn get_movie_videos(
     Path(id): Path<i32>
 ) -> Json<VideoResponse> {
     let url = format!(
-        "https://api.themoviedb.org/3/movie/{}/videos?api_key={}".
+        "https://api.themoviedb.org/3/movie/{}/videos?api_key={}",
         id,
         state.tmdb_api_key
     );

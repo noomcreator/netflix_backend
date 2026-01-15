@@ -9,7 +9,7 @@ pub struct Movie {
     pub poster_path: Option<String>,
     pub backdrop_path: Option<String>,
     pub vote_average: Option<f64>,
-    pub release_date: Option<Sttring>,
+    pub release_date: Option<String>,
     pub meidia_type: Option<String>,
 }
 
