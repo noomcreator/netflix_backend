@@ -20,7 +20,7 @@ FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Copy the binary (Matches Cargo.toml name: netflix_backed)
-COPY --from=builder /app/target/release/netflix_backed /usr/local/app
+COPY --from=builder /app/target/release/netflix_backend /usr/local/app
 
 # Copy the video file correctly
 COPY assets ./assets
